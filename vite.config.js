@@ -43,8 +43,15 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      scss: {
-      },
+      scss: {},
     },
   },
+  build: {
+    terserOptions: {
+      compress: false,
+      mangle: false,
+    },
+    minify:false,
+  },
+  base: './',
 });
