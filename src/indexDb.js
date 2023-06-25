@@ -22,7 +22,7 @@ export function addArticle(article) {
 }
 
 // 批量删除文章详情
-export function deleteArticleList(ids) {
+export function deleteArticles(ids) {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(storeName, 'readwrite');
     // 获取可以进行数据增删改查的objectStore对象
@@ -102,9 +102,9 @@ export function iniDB() {
         if (!event.target.result) {
           let listData = [];
           for (let i = 1; i <= 20; i++) {
-            listData.push({
+            listData.unshift({
               id: i,
-              time: getCurrentTime(),
+              time: getCurrentTime(i),
               title: `文章${i}`,
               author: 'danhuang250',
             });
@@ -116,8 +116,8 @@ export function iniDB() {
           });
           listData.forEach((item) => {
             objectStore.add({
-              id: item.id,
-              data: `这是第${item.id}篇文章的内容`,
+              ...item,
+              content: `<p>这是第${item.id}篇文章的内容</p>`,
             });
           });
         }

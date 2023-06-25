@@ -4,7 +4,10 @@ import { getArticleList } from '@/indexDb.js';
 export const list = reactive([]);
 
 // list 初始化从indexDB中获取
-getArticleList().then((data) => {
-  list.push(...data);
-});
 
+export const getList = () => {
+ return getArticleList().then((data) => {
+    list.length = 0;
+    list.push(...data);
+  });
+};

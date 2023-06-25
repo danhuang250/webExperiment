@@ -11,7 +11,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <router-view  :loading="!init"/>
+<div :loading="!init">
+  <router-view/>
+</div>
 </template>
 
 <style scoped>
